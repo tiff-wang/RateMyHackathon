@@ -1,0 +1,23 @@
+{
+  "name": "ratemyhackathon",
+  "version": "1.0.0",
+  "description": "Webapp allowing users to rate their hackathon experiences ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tiff-wang/RateMyHackathon.git"
+  },
+  "author": "Tiffany Wang and John Wu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tiff-wang/RateMyHackathon/issues"
+  },
+  "homepage": "https://github.com/tiff-wang/RateMyHackathon#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  }
+}
