@@ -2,7 +2,7 @@
   "name": "ratemyhackathon",
   "version": "1.0.0",
   "description": "Webapp allowing users to rate their hackathon experiences ",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
