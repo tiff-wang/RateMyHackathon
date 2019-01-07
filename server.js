@@ -19,6 +19,8 @@ app.get('/test', (req, res) => {
     res.send("Test complete! :)")
 })
 
+require('./api/routes/hackathonRoute')(app)
+
 app.listen(port)
 console.log('App listing on port ' + port)
 
