@@ -8,8 +8,19 @@ module.exports = function(app) {
         })
     })
 
+    app.post('/create')
+
     app.get('/hackathon/:id', (req, res) => {
-        res.status(200).send(req.params.id)
+        name = req.params.id
+        hackathonController.getHackathonByName(name, function(result) {
+            res.status(200).send(result)
+        })
     })
 
+    app.get('/hackathon/host/:id', (req, res) => {
+        host = req.params.id
+        hackathonController.getHackathonByName(host, function(result) {
+            res.status(200).send(result)
+        })
+    })
 }
