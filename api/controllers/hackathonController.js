@@ -8,32 +8,22 @@ module.exports = {
     },
 
     getHackathonByName: (req, callback) => {
-        hackathonService.getAll(function(res) {
-            // TODO: Change to foreach loop.
-            var name = req.param.name
-            for (i = 0 ; i < res.length ; i++) {
-                if (res[i].name === name) return callback(res[i])
-            }
-            return callback("ERROR, HACKATHON DOES NOT EXIST YET :(")
+        hackathonService.getHackathonByName(req.params.name, function(res) {
+            return callback(res)
         })
     },
 
     getHackathonByHost: (req, callback) => {
-        hackathonService.getAll(function(res) {
-            // TODO: Change to foreach loop.
-            var host = req.params.host
-            for (i = 0 ; i < res.length ; i++) {
-                if (res[i].host === req) return callback(res[i])
-            }
-            return callback("ERROR, THIS HOST DOES NOT EXIST YET :(")
+        hackathonService.getHackathonByHost(req.params.host, function(res) {
+            return callback(res)
         })
     },
 
-    createHackathon: (req, callback) => {
+    insertReview: (req, callback) => {
         var newHackathon = {
-            name : req.query.name,
-            host : req.query.host, 
-            review : req.query.host, 
+            name : req.query.name.toLowerCase(),
+            host : req.query.host.toLowerCase(), 
+            review : req.query.review, 
             rating : req.query.rating
         }
         hackathonService.createHackathon(newHackathon, function(err, res) {
@@ -41,12 +31,8 @@ module.exports = {
         })
     },
 
-    addHackathonReview: (req, callback) => {
-
-    },
-
     deleteHackathon: (req, callback) => {
-        var hackathon = { name: req.params.name };
+        var hackathon = { name: req.params.name.toLowerCase() };
         hackathonService.deleteHackathon(hackathon, function(err, res) {
             return callback(res)
         })

@@ -28,13 +28,39 @@ module.exports = {
         })  
     },
 
-    createHackathon: (req, callback) => {
+    getHackathonByName: (req, callback) => {
+        MongoClient.connect(URL, function(err, db) {
+            if (err) throw err
+            var dbo = db.db(DATABASE)
+            var query = { name : req }
+            dbo.collection(COLLECTION).find(query).toArray(function(err, res) {
+                if (err) throw err
+                db.close()
+                return callback(res)
+            })
+        })
+    },
+
+    getHackathonByHost: (req, callback) => {
         MongoClient.connect(URL, function(err, db) {
             if (err) throw err;
             var dbo = db.db(DATABASE)
+            var query = { host : req}
+            dbo.collection(COLLECTION).find(query).toArray(function(err, res) {
+                if (err) throw err
+                db.close()
+                return callback(res)
+            })
+        })
+    },
+
+    createHackathon: (req, callback) => {
+        MongoClient.connect(URL, function(err, db) {
+            if (err) throw err
+            var dbo = db.db(DATABASE)
             dbo.collection(COLLECTION).insertOne(req, function(err, res) {
-                if (err) throw err;
-                db.close();
+                if (err) throw err
+                db.close()
                 return callback(res)
             })
         })
@@ -42,11 +68,11 @@ module.exports = {
 
     deleteHackathon: (req, callback) => {
         MongoClient.connect(URL, function(err, db) {
-            if (err) throw err;
-            var dbo = db.db(DATABASE);
+            if (err) throw err
+            var dbo = db.db(DATABASE)
             dbo.collection(COLLECTION).deleteOne(req, function(err, res) {
-                if (err) throw err;
-                db.close();
+                if (err) throw err
+                db.close()
                 return callback(res)
             })
         })
