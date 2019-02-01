@@ -4,6 +4,14 @@ const URL = 'mongodb://localhost:27017/'
 const DATABASE = 'RateMyHackathon'
 const COLLECTION = 'hackathon'
 
+var testHackathon = {
+    name: "McHacks",
+    host: "McGill University",
+    review: "It's pretty bad, no food..... :(",
+    rating: 1,
+}
+
+
 module.exports = {
     /** 
      * Get all Hackathons information.
@@ -11,14 +19,36 @@ module.exports = {
     getAll: (callback) => {
         MongoClient.connect(URL, function(err, db) {
             if (err) throw err
-            
             var dbo = db.db(DATABASE)
             dbo.collection(COLLECTION).find({}).toArray(function(err, res) {
-              if (err) throw err
-              db.close()
-              return callback(res)
+                if (err) throw err
+                db.close()
+                return callback(res)
             })
         })  
+    },
+
+    createHackathon: (req, callback) => {
+        MongoClient.connect(URL, function(err, db) {
+            if (err) throw err;
+            var dbo = db.db(DATABASE)
+            dbo.collection(COLLECTION).insertOne(req, function(err, res) {
+                if (err) throw err;
+                db.close();
+                return callback(res)
+            })
+        })
+    },
+
+    deleteHackathon: (req, callback) => {
+        MongoClient.connect(URL, function(err, db) {
+            if (err) throw err;
+            var dbo = db.db(DATABASE);
+            dbo.collection(COLLECTION).deleteOne(req, function(err, res) {
+                if (err) throw err;
+                db.close();
+                return callback(res)
+            })
+        })
     }
 }
-
