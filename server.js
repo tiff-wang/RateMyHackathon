@@ -15,10 +15,6 @@ app.use(function (req, res, next) {
   next()
 })
 
-app.get('/test', (req, res) => {
-    res.send("Test complete! :)")
-})
-
 require('./api/routes/hackathonRoute')(app)
 
 app.get('/*', function response(req, res) {
