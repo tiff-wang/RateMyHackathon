@@ -28,6 +28,10 @@ module.exports = {
         })  
     },
 
+    /** 
+     * Query hackathon information by hackathon name. 
+     * eg. name: McHacks 
+     */
     getHackathonByName: (req, callback) => {
         MongoClient.connect(URL, function(err, db) {
             if (err) throw err
@@ -41,6 +45,10 @@ module.exports = {
         })
     },
 
+    /**
+     * Query hackathon information by hosting organization / school. 
+     * eg. host: McGill University
+     */
     getHackathonByHost: (req, callback) => {
         MongoClient.connect(URL, function(err, db) {
             if (err) throw err;
@@ -54,6 +62,9 @@ module.exports = {
         })
     },
 
+    /**
+     * Create hackathon. 
+     */
     createHackathon: (req, callback) => {
         MongoClient.connect(URL, function(err, db) {
             if (err) throw err
@@ -66,6 +77,10 @@ module.exports = {
         })
     },
 
+    /**
+     * Insert review to existing hackathon. 
+     * TODO: (tiff) add function update overall rating.
+     */
     insertReview: (name, req, callback) => {
         MongoClient.connect(URL, function(err, db) {
             if (err) throw err
@@ -82,6 +97,9 @@ module.exports = {
         })
     },
 
+    /** 
+     * Delete hackathon by name. 
+     */
     deleteHackathon: (req, callback) => {
         MongoClient.connect(URL, function(err, db) {
             if (err) throw err

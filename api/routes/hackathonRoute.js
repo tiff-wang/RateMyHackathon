@@ -1,6 +1,9 @@
 var hackathonController = require('../controllers/hackathonController')
 
 module.exports = function(app) {
+    /**
+     * GET REQUESTS
+     */
     app.get('/hackathon', (req, res) => {
         hackathonController.getHackathons(function(result) {
             res.status(200).send(result)
@@ -19,6 +22,10 @@ module.exports = function(app) {
         })
     })
 
+    /**
+     * POST REQUESTS
+     */
+
     app.post('/hackathon/create', function(req, res) {
         hackathonController.createHackathon(req, function(result) {
             res.status(200).send(result)
@@ -30,6 +37,10 @@ module.exports = function(app) {
             res.status(200).send(result)
         })
     })
+
+    /**
+     * DELETE REQUESTS
+     */
 
     app.delete('/hackathon/:name', function (req, res) { 
         hackathonController.deleteHackathon(req, function() { 
