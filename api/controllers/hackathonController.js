@@ -19,7 +19,7 @@ module.exports = {
         })
     },
 
-    insertReview: (req, callback) => {
+    createHackathon: (req, callback) => {
         var newHackathon = {
             name : req.query.name.toLowerCase(),
             host : req.query.host.toLowerCase(), 

@@ -20,7 +20,7 @@ module.exports = function(app) {
     })
 
     app.post('/hackathon', function(req, res) {
-        hackathonController.insertReview(req, function(result) {
+        hackathonController.createHackathon(req, function(result) {
             res.status(200).send('review saved created')
         })
     })
