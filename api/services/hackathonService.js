@@ -66,6 +66,22 @@ module.exports = {
         })
     },
 
+    insertReview: (name, req, callback) => {
+        MongoClient.connect(URL, function(err, db) {
+            if (err) throw err
+            var dbo = db.db(DATABASE)
+            var query = { name : name }
+            var updateQuery = { $push: { reviews: { req } } }
+            dbo.collection(COLLECTION)
+               .updateOne(query, updateQuery, function(err, res) {
+                if (err) throw err
+                db.close()
+                console.log(res)
+                return callback (res)
+            })
+        })
+    },
+
     deleteHackathon: (req, callback) => {
         MongoClient.connect(URL, function(err, db) {
             if (err) throw err

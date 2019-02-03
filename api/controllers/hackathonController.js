@@ -23,10 +23,23 @@ module.exports = {
         var newHackathon = {
             name : req.query.name.toLowerCase(),
             host : req.query.host.toLowerCase(), 
+            reviews: [{
+                review : req.query.review,
+                rating: req.query.rating 
+            }] 
+        }
+        hackathonService.createHackathon(newHackathon, function(err, res) {
+            return callback(res)
+        })
+    },
+
+    insertReview: (req, callback) => {
+        var newReview = {
             review : req.query.review, 
             rating : req.query.rating
         }
-        hackathonService.createHackathon(newHackathon, function(err, res) {
+        var name = req.params.name
+        hackathonService.insertReview(name, newReview, function(err, res) {
             return callback(res)
         })
     },

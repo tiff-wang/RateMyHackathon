@@ -19,15 +19,21 @@ module.exports = function(app) {
         })
     })
 
-    app.post('/hackathon', function(req, res) {
+    app.post('/hackathon/create', function(req, res) {
         hackathonController.createHackathon(req, function(result) {
-            res.status(200).send('review saved created')
+            res.status(200).send(result)
+        })
+    })
+
+    app.post('/hackathon/insert/:name', function(req, res) {
+        hackathonController.insertReview(req, function(result) {
+            res.status(200).send(result)
         })
     })
 
     app.delete('/hackathon/:name', function (req, res) { 
         hackathonController.deleteHackathon(req, function() { 
-            res.status(200).send(req.params.name + ' deleted')
+            res.status(200).send(req.params.name + " deleted")
         })
     })
 }
